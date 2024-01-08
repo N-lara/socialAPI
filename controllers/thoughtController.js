@@ -4,7 +4,7 @@ module.exports = {
   //TODO 
   async getThoughts(req, res){
     try{
-        res.json('user');
+        res.json('getThoughts');
     } catch (err) {
       res.status(500).json(err);
     }
@@ -12,7 +12,7 @@ module.exports = {
   //TODO 
   async getSingleThought(req, res){
     try{
-        res.json('user');
+        res.json('getSingleThought');
     } catch (err) {
       res.status(500).json(err);
     }
@@ -20,7 +20,7 @@ module.exports = {
   //TODO 
   async createThought(req, res){
     try{
-        res.json('user');
+        res.json('createThought');
     } catch (err) {
       res.status(500).json(err);
     }
@@ -28,7 +28,7 @@ module.exports = {
   //TODO 
   async updateThought(req, res){
     try{
-        res.json('user');
+        res.json('updateThought');
     } catch (err) {
       res.status(500).json(err);
     }
@@ -36,7 +36,7 @@ module.exports = {
   //TODO 
   async deleteThought(req, res){
     try{
-        res.json('user');
+        res.json('deleteThought');
     } catch (err) {
       res.status(500).json(err);
     }
@@ -44,7 +44,7 @@ module.exports = {
   //TODO async 
   createReaction(req, res){
     try{
-        res.json('user');
+        res.json('createReaction');
     } catch (err) {
       res.status(500).json(err);
     }
@@ -52,7 +52,7 @@ module.exports = {
   //TODO async 
   deleteReaction(req, res){
     try{
-        res.json('user');
+        res.json('deleteReaction');
     } catch (err) {
       res.status(500).json(err);
     }

@@ -11,7 +11,8 @@ const thoughtSchema = new Schema(
     },
     createdAt: { 
       type: Date,
-      //TODO default timestamp, + getter to format ON QUEARY
+      //TODO getter to format ON QUEARY
+      default:Date.now//check this
     },
     username: {
         type: String,

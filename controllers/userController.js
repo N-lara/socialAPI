@@ -45,7 +45,7 @@ module.exports = {
   async updateUser(req,res) {
     try{
 //////////////////////////////////////////////////////////////////////////////
-        const user = await User.findOneAndUpdate////////////
+        const user = await User.findOneAndUpdate////////////check this for sure
     } catch (err){
         res.status(500).json(err)
     }
@@ -66,8 +66,20 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-};
-
 //TODO add friend
-
-//TODO deleteFriend
+  async addFriend(req, res){
+    try{
+        res.json('addFriend');
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+  //TODO deleteFriend
+  async deleteFriend(req, res){
+    try{
+        res.json('deleteFriend');
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+};
