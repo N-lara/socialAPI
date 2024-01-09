@@ -48,6 +48,9 @@ to use this app once you have installed it and its dependancies you can manipula
 
 you can refer to models to see required values for json body to send for post requests, you can use theese routes to manipulate the database and in the future if wanted to create a frontend.
 
+video walkthrough of app to display functionality:
+https://drive.google.com/file/d/1FFDlGwdJQDaaNkTBQ8aGHWLejdKH-FSD/view
+ 
 ![screenshot of app](./assets/screenshot.png)
 
 ## Credits
@@ -57,6 +60,7 @@ github : https://github.com/N-lara
 
 I also give credit to the npm packages I used; express, mongoose, and date-and-time
 
-## in progress
+## Video Walkthrough
 
-I am still working on all thought routes urrently only have user routes all finished and working good no video yet. soon.
+video walkthrough of app to display functionality:
+https://drive.google.com/file/d/1FFDlGwdJQDaaNkTBQ8aGHWLejdKH-FSD/view
