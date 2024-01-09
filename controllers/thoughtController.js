@@ -75,7 +75,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  //TODO 
+  // create reaction 
   async createReaction(req, res){
     try{
       const thought = await Thought.findOneAndUpdate(
@@ -91,10 +91,18 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  //TODO async 
-  deleteReaction(req, res){
+  //TODO 
+  async deleteReaction(req, res){
     try{
-        res.json('deleteReaction');
+      const thought = await Thought.findOneAndUpdate(
+        {_id: req.params.thoughtId}, 
+        { $pull: { reactions: { reactionId: req.params.reactionId } } },
+        { runValidators: true, new: true }
+      );
+      if (!thought) {
+        return res.status(404).json({ message: 'No thought with this id!' });
+      }
+      res.status(200).json(thought);    
     } catch (err) {
       res.status(500).json(err);
     }

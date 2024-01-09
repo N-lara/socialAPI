@@ -42,6 +42,8 @@ to use this app once you have installed it and its dependancies you can manipula
 
 * http://localhost:3001/api/thoughts/:thoughtId/reactions
     post: create reaction
+
+* http://localhost:3001/api/thoughts/:thoughtId/reactions/:reactionId
     delete: delete reaction
 
 you can refer to models to see required values for json body to send for post requests, you can use theese routes to manipulate the database and in the future if wanted to create a frontend.
