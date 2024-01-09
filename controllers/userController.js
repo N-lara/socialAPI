@@ -3,7 +3,7 @@ const { User, Thought, Reaction, Application } = require('../models');
 module.exports = {
 
 
-  //TODO CHECK Get all users
+  //Get all users
   async getUsers(req, res) {
     try {
       const users = await User.find();
@@ -14,7 +14,7 @@ module.exports = {
   },
 
 
-  // TODO CHECK Get a single user
+  //Get a single user
   async getSingleUser(req, res) {
     try {
       const user = await User.findOne({ _id: req.params.userId })
@@ -31,7 +31,7 @@ module.exports = {
   },
 
 
-  // TODO CHECK create a new user
+  //create a new user
   async createUser(req, res) {
     try {
       const user = await User.create(req.body);
@@ -41,17 +41,24 @@ module.exports = {
     }
   },
 
-  // TODO CHECK update existing user
+  // update existing user
   async updateUser(req,res) {
     try{
-//////////////////////////////////////////////////////////////////////////////
-        const user = await User.findOneAndUpdate////////////check this for sure
+        const user = await User.findOneAndUpdate(
+          {_id: req.params.userId}, 
+          { $set: req.body }, 
+          { runValidators: true, new: true }
+        );
+        if (!user) {
+          return res.status(404).json({ message: 'No user with this id!' });
+        }
+        res.json(user);
     } catch (err){
         res.status(500).json(err)
     }
   },
 
-  // TODO CHECK Delete a user and associated apps
+  // Delete a user and associated thoughts
   async deleteUser(req, res) {
     try {
       const user = await User.findOneAndDelete({ _id: req.params.userId });
@@ -60,8 +67,8 @@ module.exports = {
         return res.status(404).json({ message: 'No user with that ID' });
       }
 
-      await Application.deleteMany({ _id: { $in: user.applications } });
-      res.json({ message: 'User and associated apps deleted!' })
+      await Thought.deleteMany({ _id: { $in: user.Thoughts } });
+      res.json({ message: 'User and associated thoughts deleted!' })
     } catch (err) {
       res.status(500).json(err);
     }
@@ -69,7 +76,17 @@ module.exports = {
 //TODO add friend
   async addFriend(req, res){
     try{
-        res.json('addFriend');
+      const user = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $addToSet: { friends: req.params.friendId } },
+        { runValidators: true, new: true }
+      );
+
+      if (!user) {
+        return res.status(404).json({ message: 'user not found' });
+      }
+
+      res.json(user);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -77,7 +94,17 @@ module.exports = {
   //TODO deleteFriend
   async deleteFriend(req, res){
     try{
-        res.json('deleteFriend');
+      const user = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $pull: { friends: req.params.friendId } },
+        { runValidators: true, new: true }
+      );
+
+      if (!user) {
+        return res.status(404).json({ message: 'user not found' });
+      }
+
+      res.json(user);    
     } catch (err) {
       res.status(500).json(err);
     }
