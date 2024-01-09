@@ -13,8 +13,8 @@ const {
 router.route('/').get(getThoughts).post(createThought);
 
 // /api/users/:Id
-router.route('/:toughtId').get(getSingleThought).delete(deleteThought).put(updateThought);
+router.route('/:thoughtId').get(getSingleThought).delete(deleteThought).put(updateThought);
 
-router.route('/:toughtId/reactions').post(createReaction).delete(deleteReaction)
+router.route('/:thoughtId/reactions').post(createReaction).delete(deleteReaction)
 
 module.exports = router;

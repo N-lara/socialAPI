@@ -57,4 +57,4 @@ I also give credit to the npm packages I used; express, mongoose, and date-and-t
 
 ## in progress
 
-i am still working on all thought routes urrently only have user routes all finished and working good no video yet. soon.
+I am still working on all thought routes urrently only have user routes all finished and working good no video yet. soon.

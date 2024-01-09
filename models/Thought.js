@@ -20,7 +20,6 @@ const thoughtSchema = new Schema(
         type: String,
         required: [true, 'user required'],
     },
-    //TODO check this
     reactions: [Reaction]
   },
   {
