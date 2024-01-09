@@ -1,11 +1,12 @@
 const { ObjectId } = require('bson');
 const { Schema, model } = require('mongoose');
+const date = require('date-and-time');
 
 const reactionSchema = new Schema(
   {
     reactionId:{
         type: ObjectId,
-        default: new ObjectId/////TODO fact check this
+        default: new ObjectId
     },
     reactionText: {
       type: String,
@@ -15,7 +16,8 @@ const reactionSchema = new Schema(
     },
     createdAt: { 
       type: Date,
-      //TODO default timestamp, + getter to format ON QUEARY
+      default: new Date()
+      //TODO getter to format ON QUEARY
     },
     username: {
         type: String,
@@ -23,14 +25,12 @@ const reactionSchema = new Schema(
     },
   },
   {
-    toJSON: {
-      virtuals: true,
-    },
-    id: false,
+    id: false
   }
 );
 
-// Initialize our User model
-const Reaction = model('reaction', reactionSchema);
+reactionSchema.get(function(){return date.format(now, 'ddd, MMM DD YYYY, hh:mm:ss A'); })
+// // Initialize our  model///? do i do this
+// const Reaction = model('reaction', reactionSchema);
 
-module.exports = Reaction;
+module.exports = reactionSchema;

@@ -1,19 +1,19 @@
 const { Schema, model } = require('mongoose');
+const emailRegex = new RegExp('^(([\w\.]*)@([\w\.-]+)+\.([\w-]{2,4}))?$', 'i')
 
 const userSchema = new Schema(
   {
     username: {
       type: String,
-      required: [true, 'username required']
-      ////TODO unique and trim validate
+      required: [true, 'username required'],
+      unique: [true, 'username already in use'],
+      trim: true
     },
     email: { 
       type: String,
-      validate:{
-        validator: () => Promise.resolve(false),///////////
-        message: 'Email validation failed'///////////TODO valitate correct
-
-      }
+      match: [emailRegex, 'please provide valid email'],
+      required: true,
+      trim: true
     },
     thoughts: [
       {

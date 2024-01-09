@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose');
 const Reaction = require('./Reaction');
+const date = require('date-and-time');
+
 
 const thoughtSchema = new Schema(
   {
@@ -11,8 +13,9 @@ const thoughtSchema = new Schema(
     },
     createdAt: { 
       type: Date,
-      //TODO getter to format ON QUEARY
-      default:Date.now//check this
+      default: new Date(),
+      get: dateFormat
+      //TODO not sure if getter is correct to format ON QUEARY
     },
     username: {
         type: String,
@@ -30,12 +33,8 @@ const thoughtSchema = new Schema(
 );
 
 // Create a virtual property `fullName` that gets and sets the user's full name
-thoughtSchema
-  .virtual('friendCount')
-  // Getter
-  .get(function () {
-    return this.reactions.length;
-  });
+thoughtSchema.get(function dateFormat(){return date.format(this.now, 'ddd, MMM DD YYYY, hh:mm:ss A'); })
+
 
 // Initialize our User model
 const Thought = model('thought', thoughtSchema);
