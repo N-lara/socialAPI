@@ -11,13 +11,13 @@ const reactionSchema = new Schema(
     reactionText: {
       type: String,
       required: [true, 'body required'],
-      min: 1,
-      max: 280
+      minLength: 1,
+      maxLength: 280
     },
     createdAt: { 
       type: Date,
-      default: new Date()
-      //TODO getter to format ON QUEARY
+      default: new Date(),
+      get: function dateFormat(){return date.format(this.createdAt, 'ddd, MMM DD YYYY, hh:mm:ss A'); }
     },
     username: {
         type: String,
@@ -28,9 +28,5 @@ const reactionSchema = new Schema(
     id: false
   }
 );
-
-reactionSchema.get(function(){return date.format(now, 'ddd, MMM DD YYYY, hh:mm:ss A'); })
-// // Initialize our  model///? do i do this
-// const Reaction = model('reaction', reactionSchema);
 
 module.exports = reactionSchema;

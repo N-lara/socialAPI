@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const emailRegex = new RegExp('^(([\w\.]*)@([\w\.-]+)+\.([\w-]{2,4}))?$', 'i')
 
 const userSchema = new Schema(
   {
@@ -11,7 +10,7 @@ const userSchema = new Schema(
     },
     email: { 
       type: String,
-      match: [emailRegex, 'please provide valid email'],
+      match: [/^(([\w\.]*)@([\w\.-]+)+\.([\w-]{2,4}))?$/i, 'please provide valid email'],
       required: true,
       trim: true
     },
